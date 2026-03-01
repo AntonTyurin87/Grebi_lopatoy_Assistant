@@ -1,0 +1,16 @@
+# See: https://taskfile.dev/api/
+
+version: "3"
+
+tasks:
+  db:
+    desc: "Создаёт файл assistant.db в корне проекта, если он отсутствует"
+    cmds:
+      - |
+        if [ ! -f assistant.db ]; then
+          touch assistant.db
+          echo "✅ Файл assistant.db успешно создан"
+        else
+          echo "ℹ️ Файл assistant.db уже существует"
+        fi
+    silent: false
