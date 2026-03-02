@@ -2,7 +2,13 @@
 
 version: "3"
 
+env:
+  MIGRATIONS_DIR: migrations
+  DB_PATH: ./assistant.db
+  GOOSE_DB_TYPE: sqlite3
+
 tasks:
+  # ========== FILES COMMANDS ==========
   db:
     desc: "Создаёт файл assistant.db в корне проекта, если он отсутствует"
     cmds:
@@ -14,3 +20,22 @@ tasks:
           echo "ℹ️ Файл assistant.db уже существует"
         fi
     silent: false
+
+  # ========== MIGRATION COMMANDS ==========
+  migration:
+    desc: Создать новую миграцию
+    interactive: true
+    cmds:
+      - |
+        read -p "Введите название миграции: " name
+        goose -dir={{.MIGRATIONS_DIR}} create "$name" sql
+
+  migrate:up:
+    desc: Применить все миграции
+    cmds:
+      - goose -dir={{.MIGRATIONS_DIR}} {{.GOOSE_DB_TYPE}} {{.DB_PATH}} up
+
+  migrate:down:
+    desc: Откатить последнюю миграцию
+    cmds:
+      - goose -dir={{.MIGRATIONS_DIR}} {{.GOOSE_DB_TYPE}} {{.DB_PATH}} down
