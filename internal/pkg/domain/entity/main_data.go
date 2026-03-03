@@ -8,8 +8,8 @@ type MainData struct {
 	Step            Step   `json:"step"`
 	IsCreated       bool   `json:"isCreated"`
 	Profession      string `json:"profession"`
-	Gender          int64  `json:"gender"`
-	World           string `json:"world"` // TODO пересобрать на числовую константу
+	Gender          Gender `json:"gender"`
+	World           World  `json:"world"`
 	Marriage        bool   `json:"marriage"`
 	Children        int64  `json:"children"`
 	Wishes          int64  `json:"wishes"`
@@ -58,6 +58,25 @@ const (
 	Step17TotalOutcome   Step = 17
 	Step18Flow           Step = 18
 	Step19Cash           Step = 19
+)
+
+// Gender ...
+type Gender int64
+
+const (
+	GenderUnknown Gender = 0
+	GenderMan     Gender = 1
+	GenderWoman   Gender = 2
+)
+
+// World ...
+type World int64
+
+const (
+	WorldUnknown World = 0
+	WorldPoor    World = 1
+	WorldMiddle  World = 2
+	WorldRich    World = 3
 )
 
 // GetID ...
@@ -109,17 +128,17 @@ func (m *MainData) GetProfession() string {
 }
 
 // GetGender ...
-func (m *MainData) GetGender() int64 {
+func (m *MainData) GetGender() Gender {
 	if m == nil {
-		return 0
+		return GenderUnknown
 	}
 	return m.Gender
 }
 
 // GetWorld ...
-func (m *MainData) GetWorld() string {
+func (m *MainData) GetWorld() World {
 	if m == nil {
-		return ""
+		return WorldUnknown
 	}
 	return m.World
 }

@@ -1,7 +1,6 @@
 -- +goose Up
 -- +goose StatementBegin
 
-
 CREATE TABLE IF NOT EXISTS main_data (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     chat_id INTEGER NOT NULL,
@@ -41,6 +40,7 @@ CREATE INDEX IF NOT EXISTS idx_main_data_created_at ON main_data(created_at);
 CREATE INDEX IF NOT EXISTS idx_main_data_updated_at ON main_data(updated_at);
 
 -- +goose StatementEnd
+
 
 -- +goose Down
 -- +goose StatementBegin
