@@ -27,8 +27,8 @@ type MainData struct {
 	TotalOutcome    int64  `json:"totalOutcome"`
 	Flow            int64  `json:"flow"`
 	Cash            int64  `json:"cash"`
-	MenuID          int64  `json:"menuID"`       // TODO зачем это нужно?
-	LastActiveID    int64  `json:"lastActiveID"` // TODO зачем это нужно?
+	MenuID          int64  `json:"menuID"`       // TODO зачем это нужно? аналог Step
+	LastActiveID    int64  `json:"lastActiveID"` // TODO зачем это нужно? можно убирать
 	Debt            int64  `json:"debt"`
 	CreatedAt       string `json:"createdAt"`
 	UpdatedAt       string `json:"updatedAt"`
